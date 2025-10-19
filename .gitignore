@@ -24,3 +24,8 @@ hs_err_pid*
 replay_pid*
 
 repos/
+/Proyecto/Proyecto/nbproject/private/
+/Proyecto/Carta/nbproject/private/
+/Proyecto/Carta/build/
+/Proyecto/ProyectoCartas/nbproject/private/
+/Proyecto/ProyectoCartas/build/
