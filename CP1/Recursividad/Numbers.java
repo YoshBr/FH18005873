@@ -15,14 +15,31 @@ public class Numbers {
     }
 
     private static double recursive(double z, double n) {
-        return n == 0 || n == 1 ? z : recursive(z, n - 1) + recursive(z, n - 2);
+        if (n == 0 || n == 1) {
+            return 1.0;
+        }
+        return z* recursive(z, n -1) + recursive(z,n -2);
     }
 
     private static double iterative(double z, double n) {
+        if (n == 0 || n == 1) {
         return 1.0;
     }
+        
+        double prev2 = 1.0;
+        double prev1 = 1.0;
+        double current = 0.0;
+        
+        for (int i = 2; i <= n; i++) {
+            current = z * prev1 + prev2;
+            prev2 = prev1;
+            prev1 = current;
+        }
+        
+        return current;
+    }
 
-    private double round(double value) {
+    private static double round(double value) {
         var ROUND = 10000000000.0;
         return Math.round(value * ROUND) / ROUND;
     }
