@@ -12,19 +12,83 @@ public class ListDoublyCircular<T> implements ListInterface<T> {
     }
 
     public void addFirst(T value) {
+        NodeDoubly<T> newNode = new NodeDoubly<>(value);
+        
+        if (isEmpty()) {
+            //Lista vacia
+            head = newNode;
+            tail = newNode;
+            newNode.next = newNode;
+            newNode.prev = newNode;
+        } else {
+            //Lista no vacia
+            newNode.next = head;
+            newNode.prev = tail;
+            head.prev = newNode;
+            tail.next = newNode;
+            head = newNode;
+        }
     }
 
     public void addLast(T value) {
+        NodeDoubly<T> newNode = new NodeDoubly<>(value);
+        
+        if (isEmpty()) {
+            //Lista vacia
+            head = newNode;
+            tail = newNode;
+            newNode.next = newNode;
+            newNode.prev = newNode;
+        } else {
+            //Lista no vacia
+            newNode.next = head;
+            newNode.prev = tail;
+            tail.next = newNode;
+            head.prev = newNode;
+            tail = newNode;
+        }
     }
 
     public T removeFirst() {
-        T first = null;
-        return first;
+        if (isEmpty()) {
+            return null;
+        }
+        
+        T removedData = head.data;
+        
+        if (head == tail) {
+            // si solo hay un elemento
+            head = null;
+            tail = null;
+        } else {
+            //si hay mas de un elemento
+            head = head.next;
+            head.prev = tail;
+            tail.next = head;
+        }
+        
+        return removedData;
     }
 
     public T removeLast() {
-        T last = null;
-        return last;
+        if (isEmpty()) {
+            return null;
+        }
+        
+        T removedData = tail.data;
+        
+        if (head == tail) {
+            // si solo hay un elemento
+            head = null;
+            tail = null;
+        } else {
+            // si hay mas de un elemento
+            tail = tail.prev;
+            tail.next = head;
+            head.prev = tail;
+        }
+        
+        return removedData;
     }
 
     public T getFirst() {
